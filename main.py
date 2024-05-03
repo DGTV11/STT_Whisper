@@ -1,4 +1,4 @@
-from os import path
+from os import path, remove
 import argparse
 
 import record, transcribe
@@ -12,6 +12,9 @@ def whisper_microphone_transcribe(model_name="base"):
 
     # transcribe the audio
     result = transcribe.transcribe_audio(WAVE_OUTPUT_PATH, model_name=model_name)
+
+    # delete the temporary audio file
+    remove(WAVE_OUTPUT_PATH)
 
     # return the result
     return result
